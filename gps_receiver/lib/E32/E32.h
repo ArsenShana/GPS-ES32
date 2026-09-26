@@ -22,8 +22,11 @@ class E32 {
   };
 
   // 433 МГц (410 + 0x17), адрес 0x0000, UART 9600 8N1, эфир 2.4 кбит/с,
-  // прозрачный режим, push-pull, FEC вкл, мощность 30 дБм (1 Вт).
-  static Config defaultConfig() { return {0x00, 0x00, 0x1A, 0x17, 0x44}; }
+  // прозрачный режим, push-pull, FEC вкл.
+  // power: 0 = 30 дБм (1 Вт), 1 = 27 дБм, 2 = 24 дБм, 3 = 21 дБм.
+  static Config defaultConfig(uint8_t power = 0) {
+    return {0x00, 0x00, 0x1A, 0x17, (uint8_t)(0x44 | (power & 0x03))};
+  }
 
   E32(HardwareSerial& serial, int8_t rxPin, int8_t txPin, int8_t m0Pin, int8_t m1Pin,
       int8_t auxPin)

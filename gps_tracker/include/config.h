@@ -8,8 +8,8 @@
 #define SEND_INTERVAL_MS 5000
 
 // ---- NEO-6M (UART1) ----
-#define GPS_RX_PIN 32  // <- TX модуля NEO-6M
-#define GPS_TX_PIN 33  // -> RX модуля NEO-6M
+#define GPS_RX_PIN 16  // <- TX модуля NEO-6M
+#define GPS_TX_PIN 17  // -> RX модуля NEO-6M
 #define GPS_BAUD 9600
 
 // ---- E32-433T30D (UART2) ----
@@ -18,6 +18,12 @@
 #define E32_M0_PIN 25
 #define E32_M1_PIN 18
 #define E32_AUX_PIN -1  // AUX не подключён (можно указать GPIO19, если подключить)
+
+// Мощность передачи E32: 0 = 30 дБм (1 Вт), 1 = 27 дБм, 2 = 24 дБм, 3 = 21 дБм.
+// Для теста на столе (модули ближе 1-2 м) лучше 3 — на 1 Вт приёмник перегружается.
+#ifndef E32_POWER
+#define E32_POWER 0
+#endif
 
 #define LED_PIN 2  // встроенный светодиод
 

@@ -2,7 +2,7 @@
 #pragma once
 
 // ---- Wi-Fi ----
-#define WIFI_SSID "New BilimLand WI-FI"
+#define WIFI_SSID "New BilimLand Wi-Fi"  // регистр важен!
 #define WIFI_PASSWORD "astana2023"
 #define MDNS_NAME "alanatech-gps"  // http://alanatech-gps.local
 
