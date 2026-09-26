@@ -11,7 +11,7 @@
 #define E32_TX_PIN 17   // -> RXD модуля E32
 #define E32_M0_PIN 25
 #define E32_M1_PIN 26
-#define E32_AUX_PIN 27  // -1, если AUX не подключён
+#define E32_AUX_PIN -1  // AUX не подключён (можно указать GPIO27, если подключить)
 
 #define LED_PIN 2  // мигает при каждом принятом пакете
 

@@ -13,11 +13,11 @@
 #define GPS_BAUD 9600
 
 // ---- E32-433T30D (UART2) ----
-#define E32_RX_PIN 16   // <- TXD модуля E32
-#define E32_TX_PIN 17   // -> RXD модуля E32
+#define E32_RX_PIN 26   // <- TXD модуля E32
+#define E32_TX_PIN 27   // -> RXD модуля E32
 #define E32_M0_PIN 25
-#define E32_M1_PIN 26
-#define E32_AUX_PIN 27  // -1, если AUX не подключён
+#define E32_M1_PIN 18
+#define E32_AUX_PIN -1  // AUX не подключён (можно указать GPIO19, если подключить)
 
 #define LED_PIN 2  // встроенный светодиод
 
