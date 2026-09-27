@@ -96,7 +96,7 @@ void setup() {
     Serial.println("[E32] !!! модуль не отвечает (AUX не поднялся). Проверьте питание 5 В и M0/M1/AUX");
   }
   E32::Config actual{};
-  if (lora.ensureConfig(E32::defaultConfig(), &actual)) {
+  if (lora.ensureConfig(E32::defaultConfig(E32_POWER), &actual)) {
     Serial.println("[E32] конфигурация ОК");
     printConfig(actual);
   } else {

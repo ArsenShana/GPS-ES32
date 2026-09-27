@@ -152,7 +152,36 @@ static void handleReset() {
 
 // ---- Wi-Fi -----------------------------------------------------------------
 
+// Код причины последнего отключения (201 = сеть не найдена, 15/204 = неверный пароль и т.д.)
+static volatile int lastDisconnectReason = 0;
+
+// Печатает видимые сети — помогает понять, видит ли ESP32 нужную (ESP32 работает только на 2.4 ГГц).
+static void scanWifi() {
+  Serial.println("[WiFi] сканирую сети...");
+  WiFi.disconnect();  // сканирование не работает, пока идут попытки подключения
+  delay(100);
+  int n = WiFi.scanNetworks();
+  Serial.printf("[WiFi] найдено сетей: %d\n", n);
+  bool found = false;
+  for (int i = 0; i < n; i++) {
+    bool match = WiFi.SSID(i) == WIFI_SSID;
+    found |= match;
+    Serial.printf("  %s \"%s\"  %d дБм  канал %d  %s\n", match ? ">>" : "  ", WiFi.SSID(i).c_str(),
+                  WiFi.RSSI(i), WiFi.channel(i),
+                  WiFi.encryptionType(i) == WIFI_AUTH_OPEN ? "открытая" : "с паролем");
+  }
+  if (!found) {
+    Serial.printf("[WiFi] сеть \"%s\" не видна. Проверьте имя (регистр, пробелы) и что роутер вещает 2.4 ГГц\n",
+                  WIFI_SSID);
+  }
+  WiFi.scanDelete();
+  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+}
+
 static void connectWifi() {
+  WiFi.onEvent([](WiFiEvent_t, WiFiEventInfo_t info) {
+    lastDisconnectReason = info.wifi_sta_disconnected.reason;
+  }, ARDUINO_EVENT_WIFI_STA_DISCONNECTED);
   WiFi.mode(WIFI_STA);
   WiFi.setAutoReconnect(true);
   WiFi.setHostname(MDNS_NAME);
@@ -168,23 +197,30 @@ static void connectWifi() {
     Serial.printf("[WiFi] подключено, IP: %s, RSSI: %d дБм\n",
                   WiFi.localIP().toString().c_str(), WiFi.RSSI());
   } else {
-    Serial.println("[WiFi] !!! не удалось подключиться, продолжаю попытки в фоне");
+    Serial.printf("[WiFi] !!! не удалось подключиться (причина: %d), продолжаю попытки в фоне\n",
+                  lastDisconnectReason);
+    scanWifi();
   }
 }
 
 static void pollWifi() {
   static bool wasConnected = false;
-  static uint32_t lastTry = 0;
+  static uint32_t lastOkOrTry = 0;
   bool c = WiFi.status() == WL_CONNECTED;
   if (c && !wasConnected) {
     Serial.printf("[WiFi] подключено, IP: %s — откройте http://%s/ или http://%s.local/\n",
                   WiFi.localIP().toString().c_str(), WiFi.localIP().toString().c_str(), MDNS_NAME);
   } else if (!c && wasConnected) {
-    Serial.println("[WiFi] соединение потеряно");
+    Serial.printf("[WiFi] соединение потеряно (причина: %d), переподключаюсь\n", lastDisconnectReason);
   }
-  if (!c && millis() - lastTry > 15000) {
-    lastTry = millis();
-    WiFi.reconnect();
+  // Обычно ESP32 переподключается сама (setAutoReconnect). Вмешиваемся, только если не вышло за 20 с.
+  if (c) {
+    lastOkOrTry = millis();
+  } else if (millis() - lastOkOrTry > 20000) {
+    lastOkOrTry = millis();
+    Serial.println("[WiFi] перезапускаю подключение");
+    WiFi.disconnect();
+    WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
   }
   wasConnected = c;
 }
