@@ -1,0 +1,14 @@
+{
+  "method": "Built-in image_gen tool",
+  "images": [
+    {
+      "asset": "power"
+    },
+    {
+      "asset": "bike"
+    },
+    {
+      "asset": "cam"
+    }
+  ]
+}
