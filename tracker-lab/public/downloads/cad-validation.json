@@ -1,0 +1,57 @@
+{
+  "unit": "mm",
+  "outer_dimensions": [
+    114.0,
+    92.0,
+    29.4
+  ],
+  "pcb_dimensions": [
+    100,
+    78,
+    1.6
+  ],
+  "pcb_underside_z": 6,
+  "lid_holes": [
+    [
+      -3,
+      -3
+    ],
+    [
+      103,
+      -3
+    ],
+    [
+      -3,
+      81
+    ],
+    [
+      103,
+      81
+    ]
+  ],
+  "pcb_holes": [
+    [
+      4,
+      4
+    ],
+    [
+      96,
+      4
+    ],
+    [
+      4,
+      74
+    ],
+    [
+      96,
+      74
+    ]
+  ],
+  "base_valid": true,
+  "lid_valid": true,
+  "base_solids": 1,
+  "lid_solids": 1,
+  "base_volume_mm3": 49571.45,
+  "lid_volume_mm3": 25020.72,
+  "status": "Trial print; USB, antenna and module heights require physical fit check"
+}

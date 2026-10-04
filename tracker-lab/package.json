@@ -1,0 +1,8 @@
+{
+  "name": "alanatech-tracker-lab",
+  "private": true,
+  "type": "module",
+  "scripts": {"start": "node server.mjs", "test": "node --test tests/*.test.mjs", "test:browser": "node tests/browser.mjs"},
+  "dependencies": {"three": "0.180.0"},
+  "devDependencies": {"playwright": "1.55.1"}
+}

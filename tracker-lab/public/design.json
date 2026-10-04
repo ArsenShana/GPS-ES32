@@ -1,0 +1,18 @@
+{
+  "name":"AlanaTech GPS / Carrier R0",
+  "revision":"R0 — прототип, геометрия разъёмов требует сверки",
+  "board":{"width":100,"depth":78,"thickness":1.6,"holes":[[4,4],[96,4],[4,74],[96,74]]},
+  "case":{"wall":2.4,"gap":4.6,"floor":2.4,"height":27,"corner":5,"pcbZ":6,"lidThickness":2.4},
+  "modules":[
+    {"id":"esp32","name":"ESP32-DevKitC V4 / WROOM","x":6.5,"y":24,"width":28.4,"depth":48,"height":9,"color":"#252b32","description":"Контроллер и USB-прошивка. Два разъёма 1×19, шаг 2.54 мм, расстояние между рядами 25.4 мм. Только WROOM: GPIO16/17 нужны GPS."},
+    {"id":"gps","name":"NEO-6M breakout","x":40,"y":10,"width":25,"depth":35,"height":7,"color":"#1a6286","description":"GPS по UART1. Типовая плата: размер и порядок контактов необходимо сверить с вашим экземпляром."},
+    {"id":"radio","name":"EBYTE E32-433T30D","x":70,"y":10,"width":24,"depth":43,"height":8,"color":"#2b6749","description":"Радиосвязь по UART2. Угловой разъём 1×7 для горизонтального монтажа; антенна 433 МГц снаружи корпуса."},
+    {"id":"antenna","name":"Керамическая GPS-антенна","x":42,"y":49,"width":25,"depth":25,"height":5,"color":"#e0c9a0","description":"Антенна лицевой стороной вверх под пластиковой крышкой. Со штатным коаксиальным кабелем GPS-модуля."}
+  ],
+  "sources":[
+    {"title":"Espressif: схема ESP32-DevKitC V4","url":"https://dl.espressif.com/dl/schematics/esp32_devkitc_v4-sch.pdf"},
+    {"title":"Espressif: назначение контактов","url":"https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-devkitc/user_guide.html"},
+    {"title":"EBYTE: модуль, руководство, посадочное место","url":"https://www.ebyte.com/product/19.html"},
+    {"title":"Espressif: библиотеки KiCad","url":"https://github.com/espressif/kicad-libraries"}
+  ]
+}

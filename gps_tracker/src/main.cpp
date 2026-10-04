@@ -49,6 +49,10 @@ static gpsproto::Packet makePacket() {
 }
 
 static void sendPacket() {
+  if (!loraOk) {
+    Serial.println("[TX] пропуск: E32 не настроен, перезапустите после проверки питания и разъёмов");
+    return;
+  }
   char buf[gpsproto::kBufferSize];
   gpsproto::Packet p = makePacket();
   int n = gpsproto::encode(p, buf, sizeof(buf));
@@ -56,7 +60,10 @@ static void sendPacket() {
     Serial.println("[TX] ошибка кодирования пакета");
     return;
   }
-  if (!lora.waitAux(2000)) Serial.println("[TX] E32 занят (AUX=LOW), отправляю всё равно");
+  if (!lora.waitAux(2000)) {
+    Serial.println("[TX] пропуск: E32 занят (AUX=LOW)");
+    return;
+  }
 
   digitalWrite(LED_PIN, HIGH);
   lora.serial().write((const uint8_t*)buf, n);
@@ -97,6 +104,7 @@ void setup() {
   }
   E32::Config actual{};
   if (lora.ensureConfig(E32::defaultConfig(E32_POWER), &actual)) {
+    loraOk = true;
     Serial.println("[E32] конфигурация ОК");
     printConfig(actual);
   } else {

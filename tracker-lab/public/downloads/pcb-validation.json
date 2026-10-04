@@ -1,0 +1,12 @@
+{
+  "check": "Independent geometry and electrical graph; KiCad DRC/ERC still required",
+  "nets": 13,
+  "pads": 61,
+  "segments": 557,
+  "vias": 7,
+  "required_clearance_mm": 0.25,
+  "minimum_trace_or_pad_gap_mm": 0.3275,
+  "unconnected_pads": [],
+  "clearance_violations": [],
+  "passed": true
+}

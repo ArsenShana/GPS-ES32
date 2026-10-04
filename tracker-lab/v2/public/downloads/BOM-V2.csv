@@ -1,0 +1,62 @@
+﻿Ref,Value,Layer,X mm,Y mm,Status
+U1,STM32L072CBT6,F.Cu,31.5,18,Selection/land pattern verification required
+U2,u-blox MAX-M10S,B.Cu,14,13,Selection/land pattern verification required
+U3,EBYTE E32-433T20S,F.Cu,56,20,Selection/land pattern verification required
+U4,TI BQ24074,F.Cu,21,34,Selection/land pattern verification required
+U5,TI TPS63031,F.Cu,31.5,34,Selection/land pattern verification required
+U6,ST LIS2DW12,F.Cu,40,10,Selection/land pattern verification required
+U7,TI TPS22919,F.Cu,22,25,Selection/land pattern verification required
+J1,USB-C / USB 2.0,F.Cu,12,41,Selection/land pattern verification required
+J2,LiPo / NTC · 3 контакта,F.Cu,37,5,Selection/land pattern verification required
+L1,Дроссель 2.2 µH,F.Cu,36.5,34,Selection/land pattern verification required
+J3,GNSS RF / u.FL,F.Cu,8,25,Selection/land pattern verification required
+SW1,BOOT / DFU,F.Cu,43,37.5,Selection/land pattern verification required
+SW2,RESET,F.Cu,49,37.5,Selection/land pattern verification required
+R1,5.1k / CC1,F.Cu,6,35,Selection/land pattern verification required
+R2,5.1k / CC2,F.Cu,6,37.5,Selection/land pattern verification required
+R3,22R / USB D+,F.Cu,18,29,Selection/land pattern verification required
+R4,22R / USB D-,F.Cu,18,31,Selection/land pattern verification required
+R5,10k / BOOT0,F.Cu,40,34,Selection/land pattern verification required
+R6,10k / NRST,F.Cu,44,31,Selection/land pattern verification required
+R7,1M / battery divider,F.Cu,25,8,Selection/land pattern verification required
+R8,330k / battery divider,F.Cu,25,10.5,Selection/land pattern verification required
+R9,10k / I2C SCL,F.Cu,36,9,Selection/land pattern verification required
+R10,10k / I2C SDA,F.Cu,36,11.5,Selection/land pattern verification required
+R11,330R / LED,F.Cu,42,28,Selection/land pattern verification required
+R12,100k / EN1 default,F.Cu,23,39,Selection/land pattern verification required
+R13,2.94k / ISET 300mA target,F.Cu,23,31,Selection/land pattern verification required
+R14,3.24k / ILIM,F.Cu,19.5,37.5,Selection/land pattern verification required
+R15,46.4k / safety timer,F.Cu,26,37.5,Selection/land pattern verification required
+R16,1k / ITERM,F.Cu,26,31,Selection/land pattern verification required
+R17,10k / CHG pullup,F.Cu,28,6,Selection/land pattern verification required
+R18,100R / GNSS QOD,F.Cu,19,24.5,Selection/land pattern verification required
+R19,10k / radio reset pullup,F.Cu,44,18,Selection/land pattern verification required
+R20,100k / M0 pulldown,F.Cu,44,20.5,Selection/land pattern verification required
+R21,100k / M1 pulldown,F.Cu,44,23,Selection/land pattern verification required
+C1,100nF / VDD1,F.Cu,24.5,16.5,Selection/land pattern verification required
+C2,100nF / VDD24,F.Cu,30,25,Selection/land pattern verification required
+C3,100nF / VDD48,F.Cu,32,11,Selection/land pattern verification required
+C4,100nF / USB VDD,F.Cu,38,18,Selection/land pattern verification required
+C5,100nF / VDDA,F.Cu,25,18.5,Selection/land pattern verification required
+C6,4.7uF / MCU,F.Cu,28,27,Selection/land pattern verification required
+C7,100nF / reset,F.Cu,46,28,Selection/land pattern verification required
+C8,100nF / ADC,F.Cu,25,13,Selection/land pattern verification required
+C9,1uF / GNSS VIO,B.Cu,9,19,Selection/land pattern verification required
+C10,10uF / GNSS VCC,B.Cu,19,19,Selection/land pattern verification required
+C11,1uF / GNSS backup,B.Cu,19,7,Selection/land pattern verification required
+C12,100nF / motion,F.Cu,40,7,Selection/land pattern verification required
+C13,10uF / motion,F.Cu,42.5,13,Selection/land pattern verification required
+C14,10uF / USB IN,F.Cu,17,35,Selection/land pattern verification required
+C15,10uF / battery,F.Cu,33,7,Selection/land pattern verification required
+C16,22uF / VSYS,F.Cu,28,34,Selection/land pattern verification required
+C17,10uF / buck-boost IN,F.Cu,31,38.5,Selection/land pattern verification required
+C18,22uF / buck-boost OUT,F.Cu,36,39,Selection/land pattern verification required
+C19,22uF / buck-boost OUT,F.Cu,36,41.5,Selection/land pattern verification required
+C20,100uF / radio buffer,F.Cu,60,37,Selection/land pattern verification required
+C21,100nF / radio,F.Cu,62.5,8,Selection/land pattern verification required
+FB1,Ferrite / analog supply,F.Cu,25,21,Selection/land pattern verification required
+D1,Green LED / status,F.Cu,42,25,Selection/land pattern verification required
+U8,USBLC6-2SC6 / ESD,F.Cu,15,32.5,Selection/land pattern verification required
+J4,SWD / pogo,B.Cu,34,8,Selection/land pattern verification required
+ANT1,GNSS patch 18x18 - MPN and matching pending,F.Cu,14,13,RF validation required
+BAT1,Protected LiPo 1S + NTC / 50x30x6 max,Off-board,9,7,Capacity chosen after current measurement

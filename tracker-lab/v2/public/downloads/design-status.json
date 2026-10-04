@@ -1,0 +1,21 @@
+{
+  "version": "V2 A0",
+  "components": 59,
+  "pads": 265,
+  "nets": 44,
+  "board_dimensions_mm": [
+    68,
+    44,
+    1.2
+  ],
+  "area_reduction_vs_R0_percent": 61.6,
+  "state": "Architecture + numbered-pin schematic + placement. No validated copper routing.",
+  "release_blockers": [
+    "Finalize PCB routing and stackup",
+    "Verify non-MCU land patterns against recommended manufacturer footprints",
+    "Choose exact USB-C connector and GNSS antenna",
+    "Review charge settings, NTC and input-current negotiation",
+    "Compute RF impedance and inspect RF/power layout",
+    "Run KiCad ERC/DRC and physical prototype tests"
+  ]
+}
