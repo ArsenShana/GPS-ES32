@@ -65,7 +65,7 @@ inline int encode(const Packet& p, char* out, size_t cap) {
                    (unsigned)clampv<uint8_t>(p.sats, 0, 99),
                    (double)clampv(p.hdop, 0.0f, 99.9f));
   if (n < 0 || (size_t)n + 4 > kMaxPacketLen) return -1;
-  n += snprintf(out + n, cap - n, "*%02X\n", checksum(out, n));
+  n += snprintf(out + n, cap - (size_t)n, "*%02X\n", checksum(out, (size_t)n));
   return n;
 }
 
