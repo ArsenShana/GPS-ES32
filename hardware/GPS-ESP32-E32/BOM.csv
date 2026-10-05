@@ -1,0 +1,16 @@
+Reference,Quantity,Part,Notes
+U1,1,ESP32-DevKitC V4 WROOM,"38 contacts, 25.4 mm between rows; not WROVER"
+U2,1,NEO-6M breakout + patch antenna,verify board size and VCC RX TX GND order; 3.3V capable
+U3,1,EBYTE E32-433T30D,"24 x 43 mm, UART 3.3V, 5V supply"
+J2 J3,2,Female header 1x19 2.54 mm,through-hole sockets for ESP32
+J4,1,Female header 1x04 2.54 mm,verify module orientation
+J5,1,Right-angle female header 1x07 2.54 mm,verify pin orientation and horizontal module height
+J1,1,Screw terminal 1x02 5.08 mm,"5V regulated input, >=2A"
+JP1,1,Header 1x02 2.54 mm + shunt,disconnect before USB programming
+C1,1,1000uF 10V low-ESR electrolytic,diameter <=8 mm height <=12 mm pitch 4 mm
+C2,1,100nF X7R 0805,>=10V
+R1,1,330 Ohm 0805,LED series resistor
+D1,1,Green LED 0805,A/K orientation required
+ANT,1,433 MHz SMA antenna,match E32 SMA connector
+PSU,1,Regulated 5V 2A supply,not connected directly to vehicle 12/24V
+H1-H4,8,M3 screws,"4 for PCB posts, 4 for lid; length verified after trial print"

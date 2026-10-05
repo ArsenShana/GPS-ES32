@@ -96,7 +96,9 @@ void setup() {
   Serial.printf("=== AlanaTech GPS трекер, ID=%d%s ===\n", DEVICE_ID,
                 FAKE_GPS ? " (ТЕСТОВЫЕ КООРДИНАТЫ)" : "");
 
+#if !FAKE_GPS
   gpsSerial.begin(GPS_BAUD, SERIAL_8N1, GPS_RX_PIN, GPS_TX_PIN);
+#endif
 
   loraOk = lora.begin();
   if (!loraOk) {
@@ -114,7 +116,9 @@ void setup() {
 }
 
 void loop() {
+#if !FAKE_GPS
   while (gpsSerial.available()) gps.encode(gpsSerial.read());
+#endif
 
   // Всё, что пришло по радио, просто печатаем (на будущее — команды от приёмника).
   while (lora.serial().available()) Serial.write(lora.serial().read());

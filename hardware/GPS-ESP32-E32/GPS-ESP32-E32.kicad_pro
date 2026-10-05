@@ -1,0 +1,18 @@
+{
+  "meta": {
+    "filename": "GPS-ESP32-E32.kicad_pro",
+    "version": 1
+  },
+  "net_settings": {
+    "classes": [
+      {
+        "name": "Default",
+        "clearance": 0.25,
+        "track_width": 0.35,
+        "via_diameter": 0.8,
+        "via_drill": 0.4
+      }
+    ],
+    "version": 3
+  }
+}

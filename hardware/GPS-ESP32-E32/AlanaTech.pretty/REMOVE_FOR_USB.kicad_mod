@@ -1,0 +1,7 @@
+(footprint "REMOVE_FOR_USB" (version 20240108) (generator "alanatech") (layer "F.Cu") 
+
+(fp_text reference "JP1" (at 0 -2) (layer "F.SilkS") (effects (font (size 1 1) (thickness 0.15))))
+(fp_text value "REMOVE_FOR_USB" (at 0 2) (layer "F.Fab") (effects (font (size 1 1) (thickness 0.15))))
+(pad "1" thru_hole circle (at 0.0000 0.0000) (size 1.8 1.8) (drill 0.9) (layers "*.Cu" "*.Mask") )
+(pad "2" thru_hole circle (at 2.5400 0.0000) (size 1.8 1.8) (drill 0.9) (layers "*.Cu" "*.Mask") )
+)

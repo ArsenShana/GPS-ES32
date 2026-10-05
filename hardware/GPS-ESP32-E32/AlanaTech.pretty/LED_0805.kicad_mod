@@ -1,0 +1,7 @@
+(footprint "LED_0805" (version 20240108) (generator "alanatech") (layer "F.Cu") 
+
+(fp_text reference "D1" (at 0 -2) (layer "F.SilkS") (effects (font (size 1 1) (thickness 0.15))))
+(fp_text value "LED_0805" (at 0 2) (layer "F.Fab") (effects (font (size 1 1) (thickness 0.15))))
+(pad "1" smd roundrect (at 0.0000 0.0000) (size 1.2 1.2) (layers "F.Cu" "F.Mask") (roundrect_rratio 0.2) )
+(pad "2" smd roundrect (at 2.0000 0.0000) (size 1.2 1.2) (layers "F.Cu" "F.Mask") (roundrect_rratio 0.2) )
+)

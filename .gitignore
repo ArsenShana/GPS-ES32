@@ -4,3 +4,4 @@ __pycache__/
 .build-core/
 tracker-lab/node_modules/
 tracker-lab/test-results/
+backups/

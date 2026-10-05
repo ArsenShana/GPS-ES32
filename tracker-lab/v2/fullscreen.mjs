@@ -10,3 +10,5 @@ button.addEventListener('click',async()=>{
 });
 document.addEventListener('fullscreenchange',sync);
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&viewport.classList.contains('fullscreen-fallback'))fallback(false);});
+// Fill the browser window immediately; native fullscreen needs a user gesture.
+fallback(true);

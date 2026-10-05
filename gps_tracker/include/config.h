@@ -8,17 +8,29 @@
 #define SEND_INTERVAL_MS 5000
 
 // ---- NEO-6M (UART1) ----
-#define GPS_RX_PIN 16  // <- TX модуля NEO-6M
-#define GPS_TX_PIN 17  // -> RX модуля NEO-6M
+#ifndef GPS_RX_PIN
+#define GPS_RX_PIN 32  // <- TX модуля NEO-6M
+#endif
+#ifndef GPS_TX_PIN
+#define GPS_TX_PIN 33  // -> RX модуля NEO-6M
+#endif
 #define GPS_BAUD 9600
 
 // ---- E32-433T30D (UART2) ----
-#define E32_RX_PIN 26   // <- TXD модуля E32
-#define E32_TX_PIN 27   // -> RXD модуля E32
+#ifndef E32_RX_PIN
+#define E32_RX_PIN 16   // <- TXD модуля E32
+#endif
+#ifndef E32_TX_PIN
+#define E32_TX_PIN 17   // -> RXD модуля E32
+#endif
+#ifndef E32_M0_PIN
 #define E32_M0_PIN 25
-#define E32_M1_PIN 18
+#endif
+#ifndef E32_M1_PIN
+#define E32_M1_PIN 26
+#endif
 #ifndef E32_AUX_PIN
-#define E32_AUX_PIN -1  // Плата-носитель: GPIO19 через env:carrier / carrier_fake.
+#define E32_AUX_PIN 27  // если AUX не подключён, тоже работает (вход с подтяжкой)
 #endif
 
 // Мощность передачи E32: 0 = 30 дБм (1 Вт), 1 = 27 дБм, 2 = 24 дБм, 3 = 21 дБм.

@@ -11,7 +11,17 @@
 #define E32_TX_PIN 17   // -> RXD модуля E32
 #define E32_M0_PIN 25
 #define E32_M1_PIN 26
-#define E32_AUX_PIN -1  // AUX не подключён (можно указать GPIO27, если подключить)
+#define E32_AUX_PIN 27  // если AUX не подключён, тоже работает (вход с подтяжкой)
+
+// Мощность E32 (0 = 30 дБм ... 3 = 21 дБм). Влияет только на передачу (env:tx_test).
+#ifndef E32_POWER
+#define E32_POWER 0
+#endif
+
+// TX_TEST=1 — приёмник сам шлёт "PING <n>" раз в 3 с: проверка эфира в обратную сторону.
+#ifndef TX_TEST
+#define TX_TEST 0
+#endif
 
 #define LED_PIN 2  // мигает при каждом принятом пакете
 

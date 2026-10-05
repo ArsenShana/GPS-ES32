@@ -240,7 +240,7 @@ void setup() {
     Serial.println("[E32] !!! модуль не отвечает (AUX не поднялся). Проверьте питание 5 В и M0/M1/AUX");
   }
   E32::Config actual{};
-  if (lora.ensureConfig(E32::defaultConfig(), &actual)) {
+  if (lora.ensureConfig(E32::defaultConfig(E32_POWER), &actual)) {
     Serial.printf("[E32] конфигурация ОК: ADDH=%02X ADDL=%02X SPED=%02X CHAN=%02X (%u МГц) OPTION=%02X\n",
                   actual.addh, actual.addl, actual.sped, actual.chan, 410 + actual.chan,
                   actual.option);
@@ -263,6 +263,17 @@ void setup() {
 }
 
 void loop() {
+#if TX_TEST
+  static uint32_t lastPingMs = 0, pingN = 0;
+  if (loraOk && millis() - lastPingMs >= 3000) {
+    lastPingMs = millis();
+    char b[24];
+    int n = snprintf(b, sizeof(b), "PING %lu\n", (unsigned long)pingN++);
+    lora.serial().write((const uint8_t*)b, n);
+    lora.serial().flush();
+    Serial.printf("[TX_TEST] %s", b);
+  }
+#endif
   pollLora();
   pollWifi();
   server.handleClient();
