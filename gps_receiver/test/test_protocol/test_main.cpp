@@ -121,6 +121,48 @@ static void test_lost_packets() {
   TEST_ASSERT_EQUAL_UINT16(3, lostBetween(10, 14));
   TEST_ASSERT_EQUAL_UINT16(0, lostBetween(65535, 0));
   TEST_ASSERT_EQUAL_UINT16(1, lostBetween(65535, 1));
+  // Дубль того же seq даёт "максимум": приёмник обязан проверять seq != prev перед
+  // вызовом lostBetween (см. onPacket в приёмнике), иначе насчитает 65535 потерь.
+  TEST_ASSERT_EQUAL_UINT16(65535, lostBetween(10, 10));
+}
+
+// Поля не должны быть пустыми или содержать мусор (лишние символы после числа).
+static void test_empty_and_trailing_junk_fields_rejected() {
+  Packet out;
+  TEST_ASSERT_FALSE(decode("G,,2,1,0,0,0,0,0,0*00\n", out));     // пустой id
+  TEST_ASSERT_FALSE(decode("G,1x,2,1,0,0,0,0,0,0*00\n", out));   // id с хвостом
+  TEST_ASSERT_FALSE(decode("G,1,2,1,0,0,0,0,0,*00\n", out));     // пустой hdop
+}
+
+// Неверное число полей отбрасывается и НЕ переполняет внутренний массив f[9].
+static void test_wrong_field_count_rejected() {
+  Packet out;
+  TEST_ASSERT_FALSE(decode("G,1,2,1,0,0,0,0,0,0,0*00\n", out));  // 10 полей
+  TEST_ASSERT_FALSE(decode("G,1,2,1,0,0,0,0*00\n", out));        // 8 полей
+}
+
+// nan/inf в координатах не должны проходить как валидные (strtod их парсит).
+static void test_nan_inf_rejected() {
+  Packet out;
+  TEST_ASSERT_FALSE(decode("G,1,2,1,nan,0,0,0,0,0*00\n", out));
+  TEST_ASSERT_FALSE(decode("G,1,2,1,inf,0,0,0,0,0*00\n", out));
+  TEST_ASSERT_FALSE(decode("G,1,2,1,0,-inf,0,0,0,0*00\n", out));
+}
+
+// Пакет без контрольной суммы ('*') отбрасывается.
+static void test_missing_checksum_rejected() {
+  Packet out;
+  TEST_ASSERT_FALSE(decode("G,1,1234,1,51.128207,71.430411,347,12.3,9,0.9\n", out));
+}
+
+// Строка без завершающего перевода строки всё равно разбирается (хвост потерян в эфире,
+// но '*HH' на месте).
+static void test_no_newline_accepted() {
+  char buf[kBufferSize];
+  int n = encode(sample(), buf, sizeof(buf));
+  buf[n - 1] = 0;  // убрать '\n'
+  Packet out;
+  TEST_ASSERT_TRUE(decode(buf, out));
 }
 
 int main() {
@@ -132,5 +174,10 @@ int main() {
   RUN_TEST(test_garbage_rejected);
   RUN_TEST(test_crlf_accepted);
   RUN_TEST(test_lost_packets);
+  RUN_TEST(test_empty_and_trailing_junk_fields_rejected);
+  RUN_TEST(test_wrong_field_count_rejected);
+  RUN_TEST(test_nan_inf_rejected);
+  RUN_TEST(test_missing_checksum_rejected);
+  RUN_TEST(test_no_newline_accepted);
   return UNITY_END();
 }
